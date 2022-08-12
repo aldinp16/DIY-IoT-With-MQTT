@@ -1,16 +1,14 @@
 package dev.aldi.diyiotwithmqtt
 
-import android.R.layout.simple_list_item_1
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import androidx.lifecycle.lifecycleScope
 import dev.aldi.diyiotwithmqtt.adapter.ControlListAdapter
-import dev.aldi.diyiotwithmqtt.databinding.FragmentBrokerSettingBinding
 import dev.aldi.diyiotwithmqtt.databinding.FragmentControlListBinding
-import dev.aldi.diyiotwithmqtt.entity.Control
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,17 +39,17 @@ class ControlListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentControlListBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var controls = MainActivity.db?.controlDao()?.getAll()
+        val database = (requireActivity().application as MyApplication).database
 
-        if (controls != null) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val controls = database.controlDao().getAll()
             binding.rvControlList.adapter = ControlListAdapter(controls)
         }
 

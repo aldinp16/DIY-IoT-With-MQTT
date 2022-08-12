@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
-import androidx.room.Room
 import com.google.android.material.navigation.NavigationView
 import com.hivemq.client.mqtt.MqttClient
 import com.hivemq.client.mqtt.datatypes.MqttQos
@@ -14,12 +13,8 @@ import dev.aldi.diyiotwithmqtt.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    lateinit var binding: ActivityMainBinding
-    lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-
-    companion object {
-        var db: AppDatabase? = null
-    }
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +31,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.menu.setNavigationItemSelectedListener(this)
 
-        MainActivity.db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "db_diyiotmqtt").allowMainThreadQueries().build()
         replaceFragment(ControlListFragment())
+        listenMQtt()
     }
 
     private fun replaceFragment (fragment: Fragment) {

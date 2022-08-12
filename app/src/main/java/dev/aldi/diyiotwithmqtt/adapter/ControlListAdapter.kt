@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.aldi.diyiotwithmqtt.databinding.ControlListSingleItemBinding
 import dev.aldi.diyiotwithmqtt.entity.Control
 
-class ControlListAdapter(var controls: List<Control>): RecyclerView.Adapter<ControlListAdapter.ViewHolder>() {
+class ControlListAdapter(private val controls: List<Control>): RecyclerView.Adapter<ControlListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ControlListSingleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -25,7 +25,5 @@ class ControlListAdapter(var controls: List<Control>): RecyclerView.Adapter<Cont
         return controls.size
     }
 
-    inner class ViewHolder(val binding: ControlListSingleItemBinding): RecyclerView.ViewHolder(binding.root) {
-
-    }
+    inner class ViewHolder(val binding: ControlListSingleItemBinding): RecyclerView.ViewHolder(binding.root)
 }

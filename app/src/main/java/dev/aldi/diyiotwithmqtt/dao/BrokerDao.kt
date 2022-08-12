@@ -6,8 +6,8 @@ import dev.aldi.diyiotwithmqtt.entity.Broker
 @Dao
 interface BrokerDao {
     @Query("SELECT * FROM broker LIMIT 1")
-    fun get(): Broker
+    suspend fun get(): Broker?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(broker: Broker)
+    suspend fun save(broker: Broker)
 }

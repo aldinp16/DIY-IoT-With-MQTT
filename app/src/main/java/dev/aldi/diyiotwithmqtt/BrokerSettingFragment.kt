@@ -1,13 +1,14 @@
 package dev.aldi.diyiotwithmqtt
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import dev.aldi.diyiotwithmqtt.databinding.FragmentBrokerSettingBinding
 import dev.aldi.diyiotwithmqtt.entity.Broker
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,39 +44,41 @@ class BrokerSettingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentBrokerSettingBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val broker = MainActivity.db?.brokerDao()
+        val database = (requireActivity().application as MyApplication).database
+        val broker = database.brokerDao()
 
-        var setting = broker?.get()
-        Log.d("WOYO", setting.toString())
-        if (setting != null) {
-            binding.mqttHost.setText(setting.host)
-            binding.mqttPort.setText(setting.port.toString())
-            binding.mqttUsername.setText(setting.username)
-            binding.mqttPassword.setText(setting.password)
-        } else {
-            mqttHost = binding.mqttHost.text.toString()
-            mqttPort = Integer.parseInt(binding.mqttPort.text.toString())
-            mqttUsername = binding.mqttUsername.text.toString()
-            mqttPassword = binding.mqttPassword.text.toString()
-            setting = Broker(1, mqttHost, mqttPort as Int, mqttUsername, mqttPassword)
+        viewLifecycleOwner.lifecycleScope.launch {
+            val setting = broker.get()
+            if (setting != null) {
+                binding.mqttHost.setText(setting.host)
+                binding.mqttPort.setText(setting.port.toString())
+                binding.mqttUsername.setText(setting.username)
+                binding.mqttPassword.setText(setting.password)
+            } else {
+                mqttHost = binding.mqttHost.text.toString()
+                mqttPort = Integer.parseInt(binding.mqttPort.text.toString())
+                mqttUsername = binding.mqttUsername.text.toString()
+                mqttPassword = binding.mqttPassword.text.toString()
+            }
         }
 
-
-        binding.brokerSettingSave.setOnClickListener { it ->
+        binding.brokerSettingSave.setOnClickListener {
             val host = binding.mqttHost.text.toString()
             val port = Integer.parseInt(binding.mqttPort.text.toString())
             val username = binding.mqttUsername.text.toString()
             val password = binding.mqttPassword.text.toString()
-            MainActivity.db?.brokerDao()?.save(Broker(1, host, port, username, password))
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                broker.save(Broker(1, host, port, username, password))
+            }
         }
     }
 
