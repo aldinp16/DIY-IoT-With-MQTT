@@ -1,29 +1,31 @@
 package dev.aldi.diyiotwithmqtt.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.BaseAdapter
 import dev.aldi.diyiotwithmqtt.databinding.ControlListSingleItemBinding
 import dev.aldi.diyiotwithmqtt.entity.Control
 
-class ControlListAdapter(private val controls: List<Control>): RecyclerView.Adapter<ControlListAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ControlListSingleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
-    }
+class ControlListAdapter(private val controls: List<Control>): BaseAdapter() {
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with (holder) {
-            with (controls[position]) {
-                binding.controlName.text = "${this.name} (${this.type})"
-                binding.controlType.text = this.type
-            }
-        }
-    }
-
-    override fun getItemCount(): Int {
+    override fun getCount(): Int {
         return controls.size
     }
 
-    inner class ViewHolder(val binding: ControlListSingleItemBinding): RecyclerView.ViewHolder(binding.root)
+    override fun getItem(postition: Int): Control {
+        return controls[postition]
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getView(postition: Int, convertView: View?, parent: ViewGroup): View {
+        val binding = ControlListSingleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val currentControl = getItem(postition)
+        binding.controlName.text = currentControl.name
+        binding.controlType.text = currentControl.type
+        return binding.root
+    }
 }

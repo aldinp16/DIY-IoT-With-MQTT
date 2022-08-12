@@ -1,14 +1,18 @@
 package dev.aldi.diyiotwithmqtt
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import dev.aldi.diyiotwithmqtt.databinding.FragmentBrokerSettingBinding
 import dev.aldi.diyiotwithmqtt.entity.Broker
 import kotlinx.coroutines.launch
+import org.eclipse.paho.android.service.MqttAndroidClient
+import org.eclipse.paho.client.mqttv3.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +32,7 @@ class BrokerSettingFragment : Fragment() {
     private var _binding: FragmentBrokerSettingBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var mqttClient: MqttAndroidClient
     private lateinit var mqttHost: String
     private lateinit var mqttPort: Number
     private lateinit var mqttUsername: String
@@ -62,12 +67,12 @@ class BrokerSettingFragment : Fragment() {
                 binding.mqttPort.setText(setting.port.toString())
                 binding.mqttUsername.setText(setting.username)
                 binding.mqttPassword.setText(setting.password)
-            } else {
-                mqttHost = binding.mqttHost.text.toString()
-                mqttPort = Integer.parseInt(binding.mqttPort.text.toString())
-                mqttUsername = binding.mqttUsername.text.toString()
-                mqttPassword = binding.mqttPassword.text.toString()
             }
+
+            mqttHost = binding.mqttHost.text.toString()
+            mqttPort = Integer.parseInt(binding.mqttPort.text.toString())
+            mqttUsername = binding.mqttUsername.text.toString()
+            mqttPassword = binding.mqttPassword.text.toString()
         }
 
         binding.brokerSettingSave.setOnClickListener {
@@ -79,6 +84,26 @@ class BrokerSettingFragment : Fragment() {
             viewLifecycleOwner.lifecycleScope.launch {
                 broker.save(Broker(1, host, port, username, password))
             }
+        }
+
+        binding.brokerSettingTest.setOnClickListener {
+            mqttHost = binding.mqttHost.text.toString()
+            mqttPort = Integer.parseInt(binding.mqttPort.text.toString())
+            mqttUsername = binding.mqttUsername.text.toString()
+            mqttPassword = binding.mqttPassword.text.toString()
+
+            val serverUri = "tcp://${mqttHost}:${mqttPort}"
+            mqttClient = MqttAndroidClient(requireContext(), serverUri, java.util.UUID.randomUUID().toString())
+            mqttClient.connect(MqttConnectOptions(), null, object: IMqttActionListener {
+                override fun onSuccess(asyncActionToken: IMqttToken?) {
+                    Toast.makeText(requireContext(), "Success connect to broker", Toast.LENGTH_LONG).show()
+                    mqttClient.disconnect()
+                }
+
+                override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
+                    Toast.makeText(requireContext(), "Failed connect to broker", Toast.LENGTH_LONG).show()
+                }
+            })
         }
     }
 

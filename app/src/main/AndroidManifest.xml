@@ -4,6 +4,8 @@
     package="dev.aldi.diyiotwithmqtt">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".MyApplication"
@@ -16,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DIYIoTWithMQTT"
         tools:targetApi="31">
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

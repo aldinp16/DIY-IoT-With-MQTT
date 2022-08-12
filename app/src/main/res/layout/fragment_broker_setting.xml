@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -17,12 +18,14 @@
             app:helperTextEnabled="true"
             app:helperText="example: broker.hivemq.com"
             android:hint="Host"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mqtt_host"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -32,7 +35,8 @@
             app:helperTextEnabled="true"
             app:helperText="example: 8888"
             android:hint="Port"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mqtt_port"
@@ -48,12 +52,14 @@
             android:layout_height="wrap_content"
             app:helperTextEnabled="true"
             android:hint="Username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mqtt_username"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,21 +68,33 @@
             android:layout_height="wrap_content"
             app:helperTextEnabled="true"
             android:hint="Password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mqtt_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/broker_setting_save"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save" />
-
+            android:padding="10dp"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/broker_setting_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+            <Button
+                android:id="@+id/broker_setting_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test Connect" />
+        </LinearLayout>
     </LinearLayout>
 
 
