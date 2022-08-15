@@ -110,10 +110,12 @@ class BrokerSettingFragment : Fragment() {
             override fun onSuccess(asyncActionToken: IMqttToken?) {
                 Toast.makeText(requireContext(), "Success connect to broker", Toast.LENGTH_LONG).show()
                 mqttClient.disconnect()
+                mqttClient.unregisterResources()
             }
 
             override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
-                Toast.makeText(requireContext(), "Failed connect to broker", Toast.LENGTH_LONG).show()
+                mqttClient.disconnect()
+                mqttClient.unregisterResources()
             }
         })
     }
