@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import dev.aldi.diyiotwithmqtt.dao.BrokerDao
 import dev.aldi.diyiotwithmqtt.databinding.FragmentBrokerSettingBinding
 import dev.aldi.diyiotwithmqtt.databinding.FragmentPubSubDebugBinding
+import dev.aldi.diyiotwithmqtt.entity.Broker
 import kotlinx.coroutines.launch
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
@@ -67,6 +68,12 @@ class PubSubDebugFragment : MqttCallback, Fragment() {
                 val serverUri = "tcp://${setting.host}:${setting.port}"
                 binding.brokerStatus.text = "Client Status: DISCONNECTED"
                 connectMqtt(serverUri, setting.username!!, setting.password!!)
+            } else {
+                val broker = Broker(1, "broker.emqx.io", 1883, "", "")
+                brokerDao.save(broker)
+                val serverUri = "tcp://${broker.host}:${broker.port}"
+                binding.brokerStatus.text = "Client Status: DISCONNECTED"
+                connectMqtt(serverUri)
             }
         }
 
@@ -166,8 +173,10 @@ class PubSubDebugFragment : MqttCallback, Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mqttClient.disconnect()
-        mqttClient.unregisterResources()
+        if (mqttClient.isConnected) {
+            mqttClient.disconnect()
+            mqttClient.unregisterResources()
+        }
     }
 
     companion object {

@@ -16,7 +16,7 @@
             android:id="@+id/broker_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Client Status: " />
 
         <LinearLayout
             android:layout_height="wrap_content"
