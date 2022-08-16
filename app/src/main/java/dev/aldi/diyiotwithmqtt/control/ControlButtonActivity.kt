@@ -3,11 +3,9 @@ package dev.aldi.diyiotwithmqtt.control
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import dev.aldi.diyiotwithmqtt.MyApplication
-import dev.aldi.diyiotwithmqtt.R
 import dev.aldi.diyiotwithmqtt.dao.BrokerDao
 import dev.aldi.diyiotwithmqtt.dao.ButtonDao
 import dev.aldi.diyiotwithmqtt.dao.ControlDao
@@ -16,7 +14,7 @@ import dev.aldi.diyiotwithmqtt.entity.Broker
 import dev.aldi.diyiotwithmqtt.entity.Button
 import dev.aldi.diyiotwithmqtt.entity.Control
 import kotlinx.coroutines.launch
-import org.eclipse.paho.android.service.MqttAndroidClient
+import info.mqtt.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.*
 import java.time.Instant
 import java.time.format.DateTimeFormatter

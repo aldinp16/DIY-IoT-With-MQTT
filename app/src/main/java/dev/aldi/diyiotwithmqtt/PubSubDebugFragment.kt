@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import dev.aldi.diyiotwithmqtt.dao.BrokerDao
-import dev.aldi.diyiotwithmqtt.databinding.FragmentBrokerSettingBinding
 import dev.aldi.diyiotwithmqtt.databinding.FragmentPubSubDebugBinding
 import dev.aldi.diyiotwithmqtt.entity.Broker
 import kotlinx.coroutines.launch
-import org.eclipse.paho.android.service.MqttAndroidClient
+import info.mqtt.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.*
 import java.time.Instant
 import java.time.format.DateTimeFormatter

@@ -1,7 +1,6 @@
 package dev.aldi.diyiotwithmqtt
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,7 @@ import dev.aldi.diyiotwithmqtt.dao.BrokerDao
 import dev.aldi.diyiotwithmqtt.databinding.FragmentBrokerSettingBinding
 import dev.aldi.diyiotwithmqtt.entity.Broker
 import kotlinx.coroutines.launch
-import org.eclipse.paho.android.service.MqttAndroidClient
+import info.mqtt.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.*
 
 // TODO: Rename parameter arguments, choose names that match

@@ -16,10 +16,9 @@ android {
     defaultConfig {
         applicationId "dev.aldi.diyiotwithmqtt"
         minSdk 26
-        targetSdk 32
+        targetSdk 33
         versionCode 3
         versionName "v0.2.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,7 +46,9 @@ android {
 
 dependencies {
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.4'
-    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.github.hannesa2:paho.mqtt.android:3.5.0'
+//    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
 
     implementation 'androidx.room:room-runtime:2.4.3'
     annotationProcessor("androidx.room:room-compiler:2.4.3")
