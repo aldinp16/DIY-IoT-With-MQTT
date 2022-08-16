@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Control(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "type") val type: String?,
     @ColumnInfo(name = "subscribe_topic") val subscribeTopic: String?,

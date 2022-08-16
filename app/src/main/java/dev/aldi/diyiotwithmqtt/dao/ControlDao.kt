@@ -12,7 +12,7 @@ interface ControlDao {
     suspend fun findByUid(id: Int): Control
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg control: Control)
+    suspend fun insert(control: Control): Long
 
     @Update
     suspend fun update(vararg control: Control)

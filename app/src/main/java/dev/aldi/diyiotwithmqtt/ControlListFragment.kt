@@ -1,5 +1,6 @@
 package dev.aldi.diyiotwithmqtt
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -51,6 +52,10 @@ class ControlListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             val controls = database.controlDao().getAll()
             binding.rvControlList.adapter = ControlListAdapter(controls)
+        }
+
+        binding.addControl.setOnClickListener {
+            AddControlDialogFragment().show(childFragmentManager, "Add Control Dialog")
         }
 
     }
