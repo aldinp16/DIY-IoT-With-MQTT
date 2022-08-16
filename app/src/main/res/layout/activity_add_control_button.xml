@@ -34,29 +34,12 @@
             android:layout_height="wrap_content"
             app:helperTextEnabled="true"
             app:helperText="example: on"
-            android:hint="On Condition"
+            android:hint="Payload"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:padding="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/on_condition_payload"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:helperTextEnabled="true"
-            app:helperText="example: off"
-            android:hint="Off Condition"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:padding="5dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/off_condition_payload"
+                android:id="@+id/payload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>

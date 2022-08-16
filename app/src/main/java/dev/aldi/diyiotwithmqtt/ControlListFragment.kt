@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import dev.aldi.diyiotwithmqtt.adapter.ControlListAdapter
+import dev.aldi.diyiotwithmqtt.control.ControlButtonActivity
 import dev.aldi.diyiotwithmqtt.databinding.FragmentControlListBinding
 import kotlinx.coroutines.launch
 
@@ -51,7 +52,14 @@ class ControlListFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             val controls = database.controlDao().getAll()
-            binding.rvControlList.adapter = ControlListAdapter(controls)
+            val adapter = ControlListAdapter(controls)
+            binding.rvControlList.adapter = adapter
+            binding.rvControlList.setOnItemClickListener { _, _, i, _ ->
+                val control = adapter.getItem(i)
+                val intent = Intent(context, ControlButtonActivity::class.java)
+                intent.putExtra("control_id", control.id)
+                startActivity(intent)
+            }
         }
 
         binding.addControl.setOnClickListener {

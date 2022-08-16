@@ -8,6 +8,5 @@ import androidx.room.PrimaryKey
 data class Button(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "control_id") val controlId: Int,
-    @ColumnInfo(name = "on_condition") val onCondition: String?,
-    @ColumnInfo(name = "off_condition") val offCondition: String?,
+    @ColumnInfo(name = "payload") val payload: String?
 )

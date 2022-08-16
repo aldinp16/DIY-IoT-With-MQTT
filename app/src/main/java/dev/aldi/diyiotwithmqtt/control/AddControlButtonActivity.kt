@@ -31,8 +31,7 @@ class AddControlButtonActivity : AppCompatActivity() {
 
         binding.addControl.setOnClickListener {
             val controlName = binding.controlName.text.toString()
-            val onCondition = binding.onConditionPayload.text.toString()
-            val offCondition = binding.offConditionPayload.text.toString()
+            val payload = binding.payload.text.toString()
             val subscribeTopic = binding.subscribeTopic.text.toString()
             val publishTopic = binding.publishTopic.text.toString()
             val isRetain = binding.isRetain.isChecked
@@ -48,7 +47,7 @@ class AddControlButtonActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 val insertedControl = controlDao.insert(control)
-                val button = Button(0, insertedControl.toInt(), onCondition, offCondition)
+                val button = Button(0, insertedControl.toInt(), payload)
                 buttonDao.save(button)
                 startActivity(Intent(this@AddControlButtonActivity, MainActivity::class.java))
                 Toast.makeText(this@AddControlButtonActivity, "Success add control", Toast.LENGTH_LONG).show()

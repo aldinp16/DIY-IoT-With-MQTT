@@ -9,67 +9,116 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:helperTextEnabled="true"
-            android:hint="Publish Topic"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:padding="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/publish_topic"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:minHeight="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                app:titleTextColor="@android:color/white"
+                android:background="?attr/colorPrimary" />
+        </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:helperTextEnabled="true"
-            android:hint="Subscribe Topic"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
             android:padding="10dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/subscribe_topic"
+            <TextView
+                android:id="@+id/client_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:text="Client Status: DISCONNECTED" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Publish Log"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            <Button
+                android:id="@+id/trigger_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TRIGGER" />
 
-        <TextView
-            android:id="@+id/pub_log"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperTextEnabled="true"
+                android:hint="Publish Topic"
+                android:paddingBottom="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Subscribe Log"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/publish_topic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/sub_log"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperTextEnabled="true"
+                android:hint="Subscribe Topic"
+                android:paddingBottom="10dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subscribe_topic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Publish Log"
+                        android:paddingBottom="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/pub_log"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scrollbars="vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Subscribe Log"
+                        android:paddingBottom="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/sub_log"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:scrollbars="vertical" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
