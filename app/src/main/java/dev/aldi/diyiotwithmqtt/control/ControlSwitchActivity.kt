@@ -148,5 +148,13 @@ class ControlSwitchActivity : AppCompatActivity(), IMqttActionListener, MqttCall
         binding.subLog.text = text
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mqttClient.isConnected) {
+            mqttClient.disconnect()
+            mqttClient.unregisterResources()
+        }
+    }
+
     override fun deliveryComplete(token: IMqttDeliveryToken?) {}
 }
