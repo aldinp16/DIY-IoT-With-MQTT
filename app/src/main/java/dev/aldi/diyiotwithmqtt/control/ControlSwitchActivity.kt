@@ -76,9 +76,9 @@ class ControlSwitchActivity : AppCompatActivity(), IMqttActionListener, MqttCall
                 message.payload = switch.onPayload.toByteArray()
                 mqttClient.publish(control.publishTopic.toString(), message, null, object: IMqttActionListener {
                     override fun onSuccess(asyncActionToken: IMqttToken?) {
-                        val messageLog = "[${DateTimeFormatter.ISO_INSTANT.format(Instant.now())}] (${control.publishTopic.toString()}) ${switch.onPayload.toString()}\n"
+                        val messageLog = "[${DateTimeFormatter.ISO_INSTANT.format(Instant.now())}] (${control.publishTopic.toString()}) ${switch.onPayload}\n"
                         val text = messageLog + binding.pubLog.text.toString()
-                        binding.pubLog.text = messageLog
+                        binding.pubLog.text = text
                         binding.triggerSwitch.text = "ON"
                         binding.triggerSwitch.isChecked = true
                         Toast.makeText(this@ControlSwitchActivity, "Success", Toast.LENGTH_LONG).show()
@@ -92,9 +92,9 @@ class ControlSwitchActivity : AppCompatActivity(), IMqttActionListener, MqttCall
                 message.payload = switch.offPayload.toByteArray()
                 mqttClient.publish(control.publishTopic.toString(), message, null, object: IMqttActionListener {
                     override fun onSuccess(asyncActionToken: IMqttToken?) {
-                        val messageLog = "[${DateTimeFormatter.ISO_INSTANT.format(Instant.now())}] (${control.publishTopic.toString()}) ${switch.onPayload.toString()}\n"
+                        val messageLog = "[${DateTimeFormatter.ISO_INSTANT.format(Instant.now())}] (${control.publishTopic.toString()}) ${switch.offPayload}\n"
                         val text = messageLog + binding.pubLog.text.toString()
-                        binding.pubLog.text = messageLog
+                        binding.pubLog.text = text
                         binding.triggerSwitch.text = "OFF"
                         binding.triggerSwitch.isChecked = false
                         Toast.makeText(this@ControlSwitchActivity, "Success", Toast.LENGTH_LONG).show()
