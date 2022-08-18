@@ -19,10 +19,10 @@
         android:theme="@style/Theme.DIYIoTWithMQTT"
         tools:targetApi="31">
         <service android:name="org.eclipse.paho.android.service.MqttService" />
-
+        <activity android:name=".control.ControlSwitchActivity" android:exported="false" />
+        <activity android:name=".control.AddControlSwitchActivity" android:exported="false" />
         <activity android:name=".control.ControlButtonActivity" android:exported="false" />
         <activity android:name=".control.AddControlButtonActivity" android:exported="false" />
-
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

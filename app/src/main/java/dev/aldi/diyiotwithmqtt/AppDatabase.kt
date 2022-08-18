@@ -8,20 +8,23 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import dev.aldi.diyiotwithmqtt.dao.BrokerDao
 import dev.aldi.diyiotwithmqtt.dao.ButtonDao
 import dev.aldi.diyiotwithmqtt.dao.ControlDao
+import dev.aldi.diyiotwithmqtt.dao.SwitchDao
 import dev.aldi.diyiotwithmqtt.entity.Broker
 import dev.aldi.diyiotwithmqtt.entity.Button
 import dev.aldi.diyiotwithmqtt.entity.Control
+import dev.aldi.diyiotwithmqtt.entity.Switch
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 const val DATABASE_NAME = "db_diyiotmqtt"
 
-@Database(entities = [Control::class, Broker::class, Button::class], version = 1)
+@Database(entities = [Control::class, Broker::class, Button::class, Switch::class], version = 1)
 abstract class AppDatabase  : RoomDatabase() {
     abstract fun controlDao(): ControlDao
     abstract fun brokerDao(): BrokerDao
     abstract fun buttonDao(): ButtonDao
+    abstract fun switchDao(): SwitchDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

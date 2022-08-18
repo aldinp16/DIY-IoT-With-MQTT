@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".control.AddControlSwitchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperTextEnabled="true"
+            app:helperText="example: Living Room Lamp"
+            android:hint="Control Name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/control_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperTextEnabled="true"
+            app:helperText="example: on"
+            android:hint="ON Payload"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/on_payload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperTextEnabled="true"
+            app:helperText="example: on"
+            android:hint="OFF Payload"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/off_payload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperTextEnabled="true"
+            app:helperText="example: living-room/lamp/s"
+            android:hint="Subscribe Topic"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/subscribe_topic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperTextEnabled="true"
+            app:helperText="example: living-room/lamp/p"
+            android:hint="Publish Topic"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/publish_topic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/is_retain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retain Publish Topic" />
+
+        <Button
+            android:id="@+id/add_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Control" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

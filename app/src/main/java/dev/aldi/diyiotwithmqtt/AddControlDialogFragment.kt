@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import dev.aldi.diyiotwithmqtt.control.AddControlButtonActivity
+import dev.aldi.diyiotwithmqtt.control.AddControlSwitchActivity
 
 class AddControlDialogFragment: DialogFragment() {
 
@@ -19,6 +20,7 @@ class AddControlDialogFragment: DialogFragment() {
                     DialogInterface.OnClickListener { _, which ->
                         when (items[which]) {
                             "Button" -> startActivity(Intent(activity, AddControlButtonActivity::class.java))
+                            "Switch" -> startActivity(Intent(activity, AddControlSwitchActivity::class.java))
                         }
                     })
             builder.create()
